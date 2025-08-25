@@ -12,8 +12,15 @@ public class LineRendererService implements RendererService {
     @Override
     public void render(Graphics g, Shape shape, boolean xor) {
         Line line = (Line) shape;
-      //  g.setColor(shape.getColor());
-        g.setXORMode(shape.getColor());
+
+        if (xor) {
+            g.setXORMode(Color.WHITE);
+            g.setColor(line.getColor());
+        } else {
+            g.setPaintMode();
+            g.setColor(line.getColor());
+        }
+
         g.drawLine(line.getLocation().x, line.getLocation().y, line.getEnd().x, line.getEnd().y);
     }
 }
