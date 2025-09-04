@@ -2,6 +2,7 @@ package com.gabriel.draw.component;
 
 import com.gabriel.drawfx.ShapeMode;
 import com.gabriel.drawfx.service.AppService;
+import com.gabriel.drawfx.model.Shape;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,7 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
 
     private final JMenuItem undoMenuItem = new JMenuItem("Undo");
     private final JMenuItem redoMenuItem = new JMenuItem("Redo");
+    private final JMenuItem deleteMenuItem = new JMenuItem("Delete");
     private final JMenuItem colorMenuItem = new JMenuItem("Color");
 
     public DrawingMenuBar(AppService appService ){
@@ -33,6 +35,9 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));;
         redoMenuItem.addActionListener(this);
         editMenu.add(redoMenuItem);
+        deleteMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+        deleteMenuItem.addActionListener(this);
+        editMenu.add(deleteMenuItem);
 
         JMenu drawMenu = new JMenu("Draw");
         drawMenu.setMnemonic(KeyEvent.VK_D);
@@ -59,6 +64,15 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         }
         if(e.getSource() == redoMenuItem) {
             appService.redo();
+        }
+        else if(e.getSource() == deleteMenuItem) {
+            // Wait lang ha
+            Shape selectedShape = appService.getSelectedShape();
+            if (selectedShape != null) {
+                appService.delete(selectedShape);
+                appService.clearSelection();
+                appService.repaint();
+            }
         }
         else if(e.getSource() == lineMenuItem){
             appService.setShapeMode( ShapeMode.Line);

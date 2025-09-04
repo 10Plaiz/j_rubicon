@@ -7,6 +7,7 @@ import com.gabriel.drawfx.DrawMode;
 import com.gabriel.drawfx.ShapeMode;
 import com.gabriel.draw.view.DrawingView;
 import com.gabriel.drawfx.service.AppService;
+import com.gabriel.drawfx.model.Drawing;
 import com.gabriel.drawfx.model.Shape;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -31,26 +32,50 @@ public class DrawingController  implements MouseListener, MouseMotionListener {
 
     }
 
+    // ...existing code...
     @Override
     public void mousePressed(MouseEvent e) {
-        Point start;
+        Point start = e.getPoint();
+        
         if(appService.getDrawMode() == DrawMode.Idle) {
-            start = e.getPoint();
-            switch (appService.getShapeMode()){
-                case Line:  currentShape = new Line(start, start);
-                    currentShape.setColor(appService.getColor());
+            // First check if we clicked on an existing shape for selection
+            Drawing drawing = (Drawing) appService.getModel();
+            Shape clickedShape = null;
+            
+            // Check shapes in reverse order (top to bottom)
+            for (int i = drawing.getShapes().size() - 1; i >= 0; i--) {
+                Shape shape = drawing.getShapes().get(i);
+                if (shape.contains(start)) {
+                    clickedShape = shape;
                     break;
-                case Rectangle:
-                    currentShape = new Rectangle(start, start);
-                    currentShape.setColor(appService.getColor());
-                    break;
-                case  Ellipse:
-                    currentShape = new Ellipse(start, start);
-                    currentShape.setColor(appService.getColor());
-                    break;
+                }
             }
-            currentShape.getRendererService().render(drawingView.getGraphics(), currentShape,false );
-            appService.setDrawMode(DrawMode.MousePressed);
+            
+            if (clickedShape != null) {
+                // Select the clicked shape
+                appService.selectShape(clickedShape);
+                appService.repaint();
+            } else {
+                // Clear selection and create new shape
+                appService.clearSelection();
+                
+                switch (appService.getShapeMode()){
+                    case Line:  
+                        currentShape = new Line(start, start);
+                        currentShape.setColor(appService.getColor());
+                        break;
+                    case Rectangle:
+                        currentShape = new Rectangle(start, start);
+                        currentShape.setColor(appService.getColor());
+                        break;
+                    case Ellipse:
+                        currentShape = new Ellipse(start, start);
+                        currentShape.setColor(appService.getColor());
+                        break;
+                }
+                currentShape.getRendererService().render(drawingView.getGraphics(), currentShape, false);
+                appService.setDrawMode(DrawMode.MousePressed);
+            }
         }
     }
 

@@ -120,4 +120,19 @@ public class DrawingAppService implements AppService {
     public void repaint() {
         drawingView.repaint();
     }
+
+    @Override
+    public void selectShape(Shape shape) {
+        drawing.setSelectedShape(shape);
+    }
+
+    @Override
+    public Shape getSelectedShape() {
+        return drawing.getSelectedShape();
+    }
+
+    @Override
+    public void clearSelection() {
+        drawing.setSelectedShape(null);
+    }
 }
