@@ -17,5 +17,6 @@ public class Drawing {
     List<Shape> shapes;
     public Drawing(){
         shapes = new ArrayList<>();
+        color = Color.BLACK;
     }
 }

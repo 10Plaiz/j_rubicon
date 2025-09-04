@@ -4,6 +4,7 @@ import com.gabriel.drawfx.ShapeMode;
 import com.gabriel.drawfx.service.AppService;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -16,9 +17,9 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
     private final JMenuItem rectangleMenuItem = new JMenuItem("Rectangle");
     private final JMenuItem ellipseMenuItem = new JMenuItem("Ellipse");
 
-    private final JMenuItem undoMenuItem = new JMenuItem("Umdo");
+    private final JMenuItem undoMenuItem = new JMenuItem("Undo");
     private final JMenuItem redoMenuItem = new JMenuItem("Redo");
-
+    private final JMenuItem colorMenuItem = new JMenuItem("Color");
 
     public DrawingMenuBar(AppService appService ){
         super();
@@ -42,6 +43,12 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         rectangleMenuItem.addActionListener(this);
         drawMenu.add(ellipseMenuItem);
         ellipseMenuItem.addActionListener(this);
+
+        JMenu propMenu = new JMenu("Properties");
+        propMenu.setMnemonic(KeyEvent.VK_P);
+        propMenu.add(colorMenuItem);
+        this.add(propMenu);
+        colorMenuItem.addActionListener(this);
     }
 
     @Override
@@ -59,8 +66,12 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         else if(e.getSource() == rectangleMenuItem){
             appService.setShapeMode( ShapeMode.Rectangle);
         }
-        else if(e.getSource() == ellipseMenuItem){
-            appService.setShapeMode( ShapeMode.Ellipse);
+        else if(e.getSource() == ellipseMenuItem) {
+            appService.setShapeMode(ShapeMode.Ellipse);
+        }
+        else if(e.getSource() == colorMenuItem) {
+                Color selectedColor = JColorChooser.showDialog(null, "Choose a color", appService.getColor());
+                appService.setColor(selectedColor);
         }
     }
 }
