@@ -59,9 +59,7 @@ public class DeawingCommandAppService implements AppService {
 
     @Override
     public void setColor(Color color) {
-        Command command = new SetColorCommand(appService, color);
         appService.setColor(color);
-        CommandService.ExecuteCommand(command);
     }
 
     @Override
