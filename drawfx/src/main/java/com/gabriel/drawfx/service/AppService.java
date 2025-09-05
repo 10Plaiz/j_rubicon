@@ -29,6 +29,11 @@ public interface AppService {
     void create(Shape shape);
     void delete(Shape shape);
 
+    // Added methods for selection
+    void selectShape(Shape shape);
+    Shape getSelectedShape();
+    void clearSelection();
+
     void close();
 
     Object getModel();

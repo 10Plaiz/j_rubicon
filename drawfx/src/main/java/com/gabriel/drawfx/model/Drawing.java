@@ -15,6 +15,8 @@ public class Drawing {
     private ShapeMode shapeMode = ShapeMode.Rectangle;
     private DrawMode drawMode = DrawMode.Idle;
     List<Shape> shapes;
+    private Shape selectedShape;
+
     public Drawing(){
         shapes = new ArrayList<>();
         color = Color.BLACK;
