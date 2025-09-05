@@ -63,10 +63,10 @@ public class DrawingView extends JPanel {
     // Draw white borders around the handles for better visibility
     g2d.setColor(Color.WHITE);
     g2d.setStroke(new BasicStroke(2));
-    g2d.drawRect((int)bounds.getX() - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE); // Top-left
-    g2d.drawRect((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE); // Top-right
-    g2d.drawRect((int)bounds.getX() - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE); // Bottom-left
-    g2d.drawRect((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE); // Bottom-right
+    g2d.drawRect((int)bounds.getX() - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE); 
+    g2d.drawRect((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+    g2d.drawRect((int)bounds.getX() - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
+    g2d.drawRect((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE);
     }
 
     // Method to check if a point is on a resize handle
@@ -75,10 +75,10 @@ public class DrawingView extends JPanel {
         
         Rectangle2D bounds = shape.getBounds();
         Rectangle[] handles = {
-            new Rectangle((int)bounds.getX() - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE), // 0: Top-left
-            new Rectangle((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE), // 1: Top-right
-            new Rectangle((int)bounds.getX() - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE), // 2: Bottom-left
-            new Rectangle((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE) // 3: Bottom-right
+            new Rectangle((int)bounds.getX() - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE),
+            new Rectangle((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)bounds.getY() - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE),
+            new Rectangle((int)bounds.getX() - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE),
+            new Rectangle((int)(bounds.getX() + bounds.getWidth()) - HANDLE_SIZE/2, (int)(bounds.getY() + bounds.getHeight()) - HANDLE_SIZE/2, HANDLE_SIZE, HANDLE_SIZE)
         };
         
         for (int i = 0; i < handles.length; i++) {

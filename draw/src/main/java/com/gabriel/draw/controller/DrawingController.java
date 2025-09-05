@@ -48,11 +48,11 @@ public class DrawingController  implements MouseListener, MouseMotionListener {
         Point start = e.getPoint();
         
         if(appService.getDrawMode() == DrawMode.Idle) {
-            // First check if we clicked on an existing shape for selection
+            // Check if there is an existing shape to select
             Drawing drawing = (Drawing) appService.getModel();
             Shape clickedShape = null;
 
-            // Check if we clicked on a resize handle first
+            // Check if resize handle was clicked first
             if (appService.getSelectedShape() != null) {
                 resizeHandle = drawingView.getResizeHandle(start, appService.getSelectedShape());
                 if (resizeHandle != -1) {
@@ -64,7 +64,7 @@ public class DrawingController  implements MouseListener, MouseMotionListener {
                 }
             }
 
-            // Check shapes in reverse order (top to bottom)
+            // Reverse shape for selecting at the top and bottom
             for (int i = drawing.getShapes().size() - 1; i >= 0; i--) {
                 Shape shape = drawing.getShapes().get(i);
                 if (shape.contains(start)) {
@@ -74,7 +74,7 @@ public class DrawingController  implements MouseListener, MouseMotionListener {
             }
             
             if (clickedShape != null) {
-                // Select the clicked shape and prepare for potential moving
+                // Select shape and prepare for dragging
                 appService.selectShape(clickedShape);
                 lastDragPoint = start;
                 isDragging = false;
@@ -187,18 +187,18 @@ public class DrawingController  implements MouseListener, MouseMotionListener {
         Point newEnd = new Point(originalEnd);
         
         switch (resizeHandle) {
-            case 0: // Top-left
+            case 0: // Top-left handle
                 newLocation.setLocation(currentPoint.x, currentPoint.y);
                 break;
-            case 1: // Top-right
+            case 1: // Top-right handle
                 newLocation.setLocation(originalLocation.x, currentPoint.y);
                 newEnd.setLocation(currentPoint.x, originalEnd.y);
                 break;
-            case 2: // Bottom-left
+            case 2: // Bottom-left handle
                 newLocation.setLocation(currentPoint.x, originalLocation.y);
                 newEnd.setLocation(originalEnd.x, currentPoint.y);
                 break;
-            case 3: // Bottom-right
+            case 3: // Bottom-right handle
                 newEnd.setLocation(currentPoint.x, currentPoint.y);
                 break;
         }
