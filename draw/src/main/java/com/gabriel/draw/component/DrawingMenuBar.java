@@ -62,7 +62,7 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         if(e.getSource() == undoMenuItem) {
             appService.undo();
         }
-        if(e.getSource() == redoMenuItem) {
+        else if(e.getSource() == redoMenuItem) {
             appService.redo();
         }
         else if(e.getSource() == deleteMenuItem) {
