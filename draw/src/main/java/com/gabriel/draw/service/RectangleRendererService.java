@@ -9,7 +9,7 @@ import java.awt.*;
 public class RectangleRendererService implements RendererService {
     @Override
     public void render(Graphics g, Shape shape, boolean xor) {
-        Rectangle line = (Rectangle) shape;
+        Rectangle rectangle = (Rectangle) shape;
         if(xor) {
             g.setXORMode(shape.getColor());
         }
@@ -28,6 +28,20 @@ public class RectangleRendererService implements RendererService {
             y = shape.getEnd().y ;
             height = -height;
         }
+
+        if(xor) {
+            g.setXORMode(shape.getColor());
+        } else {
+            // Draw fill first if fill color is set
+            if (shape.getFill() != null) {
+                g.setColor(shape.getFill());
+                g.fillRect(x, y, width, height);
+            }
+            
+            // Draw outline
+            g.setColor(shape.getColor());
+        }
+
         g.drawRect(x, y, width, height);
     }
 }

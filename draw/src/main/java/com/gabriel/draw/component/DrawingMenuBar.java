@@ -22,6 +22,7 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
     private final JMenuItem redoMenuItem = new JMenuItem("Redo");
     private final JMenuItem deleteMenuItem = new JMenuItem("Delete");
     private final JMenuItem colorMenuItem = new JMenuItem("Color");
+    private final JMenuItem fillColorMenuItem = new JMenuItem("Fill Color");
 
     public DrawingMenuBar(AppService appService ){
         super();
@@ -54,6 +55,9 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         propMenu.add(colorMenuItem);
         this.add(propMenu);
         colorMenuItem.addActionListener(this);
+        propMenu.add(fillColorMenuItem);
+        fillColorMenuItem.addActionListener(this);
+        this.add(propMenu);
     }
 
     @Override
@@ -86,6 +90,12 @@ public class DrawingMenuBar extends JMenuBar implements ActionListener {
         else if(e.getSource() == colorMenuItem) {
                 Color selectedColor = JColorChooser.showDialog(null, "Choose a color", appService.getColor());
                 appService.setColor(selectedColor);
+        }
+        else if(e.getSource() == fillColorMenuItem) {
+            Color selectedFillColor = JColorChooser.showDialog(null, "Choose fill color", appService.getFill());
+            if (selectedFillColor != null) {
+                appService.setFill(selectedFillColor);
+            }
         }
     }
 }

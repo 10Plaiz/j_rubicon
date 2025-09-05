@@ -3,6 +3,7 @@ package com.gabriel.draw.service;
 import com.gabriel.draw.command.AddShapeCommand;
 import com.gabriel.draw.command.DeleteShapeCommand;
 import com.gabriel.draw.command.SetColorCommand;
+import com.gabriel.draw.command.SetFillCommand;
 import com.gabriel.drawfx.DrawMode;
 import com.gabriel.drawfx.ShapeMode;
 import com.gabriel.drawfx.command.Command;

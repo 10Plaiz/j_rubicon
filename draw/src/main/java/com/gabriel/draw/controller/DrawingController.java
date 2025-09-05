@@ -67,10 +67,12 @@ public class DrawingController  implements MouseListener, MouseMotionListener {
                     case Rectangle:
                         currentShape = new Rectangle(start, start);
                         currentShape.setColor(appService.getColor());
+                        currentShape.setFill(appService.getFill());
                         break;
                     case Ellipse:
                         currentShape = new Ellipse(start, start);
                         currentShape.setColor(appService.getColor());
+                        currentShape.setFill(appService.getFill());
                         break;
                 }
                 currentShape.getRendererService().render(drawingView.getGraphics(), currentShape, false);
