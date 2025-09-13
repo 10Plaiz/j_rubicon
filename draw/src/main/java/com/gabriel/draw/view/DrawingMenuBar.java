@@ -15,23 +15,41 @@ public class DrawingMenuBar extends JMenuBar {
 
     public DrawingMenuBar( ActionListener actionListener ){
         super();
+        JMenuItem lineMenuItem = new JMenuItem("Line");
+        lineMenuItem.setActionCommand(ActionCommand.LINE);
+        lineMenuItem.addActionListener(actionListener);
+        add(lineMenuItem);
         JMenuItem rectangleMenuItem = new JMenuItem("Rectangle");
         rectangleMenuItem.setActionCommand(ActionCommand.RECT);
-
+        rectangleMenuItem.addActionListener(actionListener);
+        add(rectangleMenuItem);
         JMenuItem ellipseMenuItem = new JMenuItem("Ellipse");
-        JMenuItem undoMenuItem = new JMenuItem("Umdo");
+        ellipseMenuItem.setActionCommand(ActionCommand.ELLIPSE);
+        ellipseMenuItem.addActionListener(actionListener);
+        add(ellipseMenuItem);
+        JMenuItem undoMenuItem = new JMenuItem("Undo");
+        undoMenuItem.setActionCommand(ActionCommand.UNDO);
+        undoMenuItem.addActionListener(actionListener);
+        add(undoMenuItem);
         JMenuItem redoMenuItem = new JMenuItem("Redo");
+        redoMenuItem.setActionCommand(ActionCommand.REDO);
+        redoMenuItem.addActionListener(actionListener);
+        add(redoMenuItem);
         JMenuItem colorMenuItem = new JMenuItem("Color");
+        colorMenuItem.setActionCommand(ActionCommand.SETCOLOR);
+        colorMenuItem.addActionListener(actionListener);
+        add(colorMenuItem);
 
          JMenu editMenu = new JMenu("Edit");
         editMenu.setMnemonic(KeyEvent.VK_E);
         add(editMenu);
-        JMenuItem lineMenuItem = new JMenuItem("Line");
         undoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
         undoMenuItem.addActionListener(actionListener);
+        undoMenuItem.setActionCommand(ActionCommand.UNDO);
         editMenu.add(undoMenuItem);
         redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
         redoMenuItem.addActionListener(actionListener);
+        redoMenuItem.setActionCommand(ActionCommand.REDO);
         editMenu.add(redoMenuItem);
 
         JMenu drawMenu = new JMenu("Draw");

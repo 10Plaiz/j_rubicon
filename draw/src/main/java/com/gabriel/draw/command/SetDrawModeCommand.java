@@ -11,11 +11,11 @@ public class SetDrawModeCommand implements Command {
     public SetDrawModeCommand(AppService appService, DrawMode drawMode){
         this.appService = appService;
         this.drawMode = drawMode;
+        this.prevDrawMode = appService.getDrawMode();
     }
 
     @Override
     public void execute() {
-        prevDrawMode = appService.getDrawMode();
         appService.setDrawMode(drawMode);
     }
 
