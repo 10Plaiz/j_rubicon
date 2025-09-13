@@ -13,26 +13,25 @@ import java.awt.event.KeyEvent;
 
 public class DrawingMenuBar extends JMenuBar {
 
-    private final JMenuItem lineMenuItem = new JMenuItem("Line");
-    private final JMenuItem rectangleMenuItem = new JMenuItem("Rectangle");
-    private final JMenuItem ellipseMenuItem = new JMenuItem("Ellipse");
-
-    private final JMenuItem undoMenuItem = new JMenuItem("Umdo");
-    private final JMenuItem redoMenuItem = new JMenuItem("Redo");
-    private final JMenuItem colorMenuItem = new JMenuItem("Color");
-
-
     public DrawingMenuBar( ActionListener actionListener ){
         super();
+        JMenuItem rectangleMenuItem = new JMenuItem("Rectangle");
+        rectangleMenuItem.setActionCommand(ActionCommand.RECT);
+
+        JMenuItem ellipseMenuItem = new JMenuItem("Ellipse");
+        JMenuItem undoMenuItem = new JMenuItem("Umdo");
+        JMenuItem redoMenuItem = new JMenuItem("Redo");
+        JMenuItem colorMenuItem = new JMenuItem("Color");
+
          JMenu editMenu = new JMenu("Edit");
         editMenu.setMnemonic(KeyEvent.VK_E);
         add(editMenu);
+        JMenuItem lineMenuItem = new JMenuItem("Line");
         undoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
-        undoMenuItem.addActionListener(this);
-        undoMenuItem.setActionCommand("Undo");
+        undoMenuItem.addActionListener(actionListener);
         editMenu.add(undoMenuItem);
-        redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));;
-        redoMenuItem.addActionListener(this);
+        redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
+        redoMenuItem.addActionListener(actionListener);
         editMenu.add(redoMenuItem);
 
         JMenu drawMenu = new JMenu("Draw");
@@ -40,19 +39,17 @@ public class DrawingMenuBar extends JMenuBar {
         editMenu.add(drawMenu);
         drawMenu.add(lineMenuItem);
         lineMenuItem.setActionCommand(ActionCommand.LINE);
-        lineMenuItem.addActionListener(this);
+        lineMenuItem.addActionListener(actionListener);
         drawMenu.add(rectangleMenuItem);
-        rectangleMenuItem.addActionListener(this);
+        rectangleMenuItem.addActionListener(actionListener);
         drawMenu.add(ellipseMenuItem);
-        ellipseMenuItem.addActionListener(this);
+        ellipseMenuItem.addActionListener(actionListener);
 
         JMenu propMenu = new JMenu("Properties");
         propMenu.setMnemonic(KeyEvent.VK_P);
         propMenu.add(colorMenuItem);
         this.add(propMenu);
-        colorMenuItem.addActionListener(this);
-    }
-
-
+        colorMenuItem.setActionCommand(ActionCommand.SETCOLOR);
+        colorMenuItem.addActionListener(actionListener);
     }
 }

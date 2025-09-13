@@ -33,9 +33,15 @@ public class ActionController implements ActionListener {
         if(ActionCommand.ELLIPSE.equals(cmd)) {
             appService.setShapeMode(ShapeMode.Ellipse);
         }
+        if(ActionCommand.SETCOLOR.equals(cmd)) {
+            Color color = JColorChooser.showDialog(null, "Choose a Color", appService.getColor());
+            appService.setColor(color);
+        }
+        /*
         else if(e.getSource() == colorMenuItem){
             Color selectedColor = JColorChooser.showDialog(null, "Choose a Color", Color.WHITE);
             appService.setColor( selectedColor);
         }
+        */
     }
 }

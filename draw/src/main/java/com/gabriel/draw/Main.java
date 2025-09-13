@@ -11,6 +11,7 @@ import com.gabriel.draw.view.DrawingFrame;
 import com.gabriel.drawfx.service.AppService;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -33,6 +34,7 @@ public class Main {
 
         drawingMenuBar.setVisible(true);
         drawingFrame.setJMenuBar(drawingMenuBar);
+        drawingFrame.getContentPane().add(drawingToolBar, BorderLayout.PAGE_START);
 
         drawingFrame.setVisible(true);
         drawingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
