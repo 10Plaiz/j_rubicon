@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 
 public class DrawingToolBar extends JToolBar {
-    // protected JTextArea textArea;
-    public DrawingToolBar(ActionListener actionListener){
+        
+        public DrawingToolBar(ActionListener actionListener){
         setFloatable(false);
         // Line button
         JButton button = new JButton();

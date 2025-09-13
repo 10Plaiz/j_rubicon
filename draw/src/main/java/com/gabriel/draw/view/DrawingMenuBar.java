@@ -15,59 +15,69 @@ public class DrawingMenuBar extends JMenuBar {
 
     public DrawingMenuBar( ActionListener actionListener ){
         super();
+        
+        // Create shape menu items
         JMenuItem lineMenuItem = new JMenuItem("Line");
         lineMenuItem.setActionCommand(ActionCommand.LINE);
         lineMenuItem.addActionListener(actionListener);
-        add(lineMenuItem);
+        
         JMenuItem rectangleMenuItem = new JMenuItem("Rectangle");
         rectangleMenuItem.setActionCommand(ActionCommand.RECT);
         rectangleMenuItem.addActionListener(actionListener);
-        add(rectangleMenuItem);
+        
         JMenuItem ellipseMenuItem = new JMenuItem("Ellipse");
         ellipseMenuItem.setActionCommand(ActionCommand.ELLIPSE);
         ellipseMenuItem.addActionListener(actionListener);
-        add(ellipseMenuItem);
-        JMenuItem undoMenuItem = new JMenuItem("Undo");
-        undoMenuItem.setActionCommand(ActionCommand.UNDO);
-        undoMenuItem.addActionListener(actionListener);
-        add(undoMenuItem);
-        JMenuItem redoMenuItem = new JMenuItem("Redo");
-        redoMenuItem.setActionCommand(ActionCommand.REDO);
-        redoMenuItem.addActionListener(actionListener);
-        add(redoMenuItem);
+        
         JMenuItem colorMenuItem = new JMenuItem("Color");
         colorMenuItem.setActionCommand(ActionCommand.SETCOLOR);
         colorMenuItem.addActionListener(actionListener);
-        add(colorMenuItem);
 
-         JMenu editMenu = new JMenu("Edit");
+        // Create Edit Menu with Undo/Redo AND Draw submenu
+        JMenu editMenu = new JMenu("Edit");
         editMenu.setMnemonic(KeyEvent.VK_E);
-        add(editMenu);
-        undoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
-        undoMenuItem.addActionListener(actionListener);
+        
+        JMenuItem undoMenuItem = new JMenuItem("Undo");
         undoMenuItem.setActionCommand(ActionCommand.UNDO);
+        undoMenuItem.addActionListener(actionListener);
+        undoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK));
         editMenu.add(undoMenuItem);
-        redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
-        redoMenuItem.addActionListener(actionListener);
+        
+        JMenuItem redoMenuItem = new JMenuItem("Redo");
         redoMenuItem.setActionCommand(ActionCommand.REDO);
+        redoMenuItem.addActionListener(actionListener);
+        redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));
         editMenu.add(redoMenuItem);
-
+        
+        
+        // Create Draw submenu under Edit
         JMenu drawMenu = new JMenu("Draw");
         drawMenu.setMnemonic(KeyEvent.VK_D);
-        editMenu.add(drawMenu);
         drawMenu.add(lineMenuItem);
-        lineMenuItem.setActionCommand(ActionCommand.LINE);
-        lineMenuItem.addActionListener(actionListener);
         drawMenu.add(rectangleMenuItem);
-        rectangleMenuItem.addActionListener(actionListener);
         drawMenu.add(ellipseMenuItem);
-        ellipseMenuItem.addActionListener(actionListener);
+        
+        // Add Draw submenu to Edit menu
+        editMenu.add(drawMenu);
+        
+        this.add(editMenu);
 
+        // Create Properties Menu
         JMenu propMenu = new JMenu("Properties");
         propMenu.setMnemonic(KeyEvent.VK_P);
         propMenu.add(colorMenuItem);
         this.add(propMenu);
-        colorMenuItem.setActionCommand(ActionCommand.SETCOLOR);
-        colorMenuItem.addActionListener(actionListener);
+
+        // Create View Menu
+        JMenu viewMenu = new JMenu("View");
+        viewMenu.setMnemonic(KeyEvent.VK_V);
+        
+        JMenuItem toggleToolbarItem = new JMenuItem("Toggle Toolbar");
+        toggleToolbarItem.setActionCommand(ActionCommand.TOGGLE_TOOLBAR);
+        toggleToolbarItem.addActionListener(actionListener);
+        toggleToolbarItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, InputEvent.CTRL_DOWN_MASK));
+        
+        viewMenu.add(toggleToolbarItem);
+        this.add(viewMenu);
     }
 }

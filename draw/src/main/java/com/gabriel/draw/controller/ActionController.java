@@ -11,8 +11,13 @@ import java.awt.event.ActionListener;
 
 public class ActionController implements ActionListener {
     AppService appService;
+    private JToolBar toolbar;
     public  ActionController(AppService appService){
         this.appService = appService;
+    }
+
+    public void setToolbar(JToolBar toolbar) {
+        this.toolbar = toolbar;
     }
 
     @Override
@@ -21,27 +26,26 @@ public class ActionController implements ActionListener {
         if(ActionCommand.UNDO.equals(cmd) ){
             appService.undo();
         }
-        if(ActionCommand.REDO.equals(cmd)) {
+        else if(ActionCommand.REDO.equals(cmd)) {
             appService.redo();
         }
-        if(ActionCommand.LINE.equals(cmd)) {
+        else if(ActionCommand.LINE.equals(cmd)) {
             appService.setShapeMode(ShapeMode.Line);
         }
-        if(ActionCommand.RECT.equals(cmd)) {
+        else if(ActionCommand.RECT.equals(cmd)) {
             appService.setShapeMode(ShapeMode.Rectangle);
         }
-        if(ActionCommand.ELLIPSE.equals(cmd)) {
+        else if(ActionCommand.ELLIPSE.equals(cmd)) {
             appService.setShapeMode(ShapeMode.Ellipse);
         }
-        if(ActionCommand.SETCOLOR.equals(cmd)) {
+        else if(ActionCommand.SETCOLOR.equals(cmd)) {
             Color color = JColorChooser.showDialog(null, "Choose a Color", appService.getColor());
             appService.setColor(color);
         }
-        /*
-        else if(e.getSource() == colorMenuItem){
-            Color selectedColor = JColorChooser.showDialog(null, "Choose a Color", Color.WHITE);
-            appService.setColor( selectedColor);
+        else if(ActionCommand.TOGGLE_TOOLBAR.equals(cmd)) {
+            if (toolbar != null) {
+                toolbar.setVisible(!toolbar.isVisible());
+            }
         }
-        */
     }
 }
