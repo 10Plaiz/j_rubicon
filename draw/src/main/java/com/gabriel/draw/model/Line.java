@@ -15,9 +15,4 @@ public class Line extends Shape {
         this.setColor(Color.RED);
         this.setRendererService(new LineRendererService());
     }
-    public Line(Point start){
-        super(start);
-        this.setColor(Color.RED);
-        this.setRendererService(new LineRendererService());
-    }
 }
