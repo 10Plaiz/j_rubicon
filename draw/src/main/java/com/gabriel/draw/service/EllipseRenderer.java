@@ -20,6 +20,26 @@ public class EllipseRenderer implements RendererService {
         int y = shape.getLocation().y;
         int width = shape.getWidth();
         int height = shape.getHeight();
+
+        if (width < 0) {
+            x += width;
+            width = Math.abs(width);
+        }
+        if (height < 0) {
+            y += height;
+            height = Math.abs(height);
+        }
+
+        /* Handle negative dimensions
+        if (width < 0) {
+            x = shape.getEnd().x;
+            width = -width;
+        }
+        if (height < 0) {
+            y = shape.getEnd().y;
+            height = -height;
+        }
+        */
         g.drawOval(x, y, width, height);
     }
 }

@@ -23,7 +23,7 @@ public abstract class Shape {
         this.setLocation(location);
         width = endpoint.x - location.x;
         height = endpoint.y - location.y;
-  }
+    }
     public Shape(Point location, int width, int height){
         this.setLocation(location);
         this.width = width;

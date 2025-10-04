@@ -18,6 +18,18 @@ public class RectangleRendererService implements RendererService {
         }
         int x = shape.getLocation().x;
         int y = shape.getLocation().y;
-        g.drawRect(x, y, shape.getWidth(), shape.getHeight());
+        int width = shape.getWidth();
+        int height = shape.getHeight();
+
+        if (width < 0) {
+            x += width;
+            width = Math.abs(width);
+        }
+        if (height < 0) {
+            y += height;
+            height = Math.abs(height);
+        }
+
+        g.drawRect(x, y, width, height);
     }
 }

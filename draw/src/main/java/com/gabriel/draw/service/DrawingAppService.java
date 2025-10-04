@@ -82,8 +82,11 @@ public class DrawingAppService implements AppService {
 
     @Override
     public void scale(Shape shape, Point newEnd) {
-        shape.setWidth(newEnd.x - shape.getLocation().x);
-        shape.setHeight(newEnd.y - shape.getLocation().y);
+        int width = newEnd.x - shape.getLocation().x;
+        int height = newEnd.y - shape.getLocation().y;
+        
+        shape.setWidth(width);
+        shape.setHeight(height);
     }
 
     @Override

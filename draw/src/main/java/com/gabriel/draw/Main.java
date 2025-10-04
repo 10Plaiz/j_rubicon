@@ -18,18 +18,20 @@ import java.awt.event.ActionListener;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Drawing drawing = new Drawing();
         AppService drawingAppService = new DrawingAppService();
         AppService appService = new DeawingCommandAppService(drawingAppService);
 
         DrawingFrame drawingFrame = new DrawingFrame(appService);
 
         ActionListener actionListener = new ActionController(appService);
-        DrawingMenuBar drawingMenuBar = new DrawingMenuBar( actionListener);
+        DrawingMenuBar drawingMenuBar = new DrawingMenuBar(actionListener);
         DrawingToolBar drawingToolBar = new DrawingToolBar(actionListener);
 
-        DrawingView drawingView = new DrawingView(drawing);
+        DrawingView drawingView = new DrawingView(appService.getDrawing());
         DrawingController drawingController = new DrawingController(appService, drawingView);
+        
+        appService.setView(drawingView);
+        
         drawingView.addMouseMotionListener(drawingController);
         drawingView.addMouseListener(drawingController);
         drawingFrame.setContentPane(drawingView);

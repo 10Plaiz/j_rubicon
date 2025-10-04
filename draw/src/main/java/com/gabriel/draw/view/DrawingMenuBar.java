@@ -36,6 +36,7 @@ public class DrawingMenuBar extends JMenuBar {
         editMenu.add(undoMenuItem);
         redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK));;
         redoMenuItem.addActionListener(actionListener);
+        redoMenuItem.setActionCommand(ActionCommand.REDO);
         editMenu.add(redoMenuItem);
 
 
