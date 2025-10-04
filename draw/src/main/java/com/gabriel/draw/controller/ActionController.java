@@ -35,7 +35,7 @@ public class ActionController implements ActionListener {
             Color color = JColorChooser.showDialog(component, "Select color", appService.getColor() );
             appService.setColor(color);
         } else if (ActionCommand.FILL.equals(cmd)) {
-            Color color = JColorChooser.showDialog(component, "Select color", appService.getColor() );
+            Color color = JColorChooser.showDialog(component, "Select color", appService.getFill() );
             appService.setFill(color);
         }
     }

@@ -37,4 +37,9 @@ public interface AppService {
     JPanel getView();
     void setView(JPanel panel);
     void repaint();
+
+    Shape findShapeAt(Point point);
+    void selectShape(Shape shape);
+    void deselectAllShapes();
+    Shape getSelectedShape();
 }

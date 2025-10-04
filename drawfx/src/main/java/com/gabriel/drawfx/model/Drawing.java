@@ -18,7 +18,7 @@ public class Drawing {
     List<Shape> selectedShapes;
     public Drawing(){
         color = Color.RED;
-        fill = Color.WHITE;
+        fill = null;
         selectedShapes = new ArrayList<>();
         shapes = new ArrayList<>();
     }

@@ -17,7 +17,7 @@ public class DrawingMenuBar extends JMenuBar {
     private final JMenuItem rectangleMenuItem = new JMenuItem("Rectangle");
     private final JMenuItem ellipseMenuItem = new JMenuItem("Ellipse");
 
-    private final JMenuItem undoMenuItem = new JMenuItem("Umdo");
+    private final JMenuItem undoMenuItem = new JMenuItem("Undo");
     private final JMenuItem redoMenuItem = new JMenuItem("Redo");
     private final JMenuItem colorMenuItem = new JMenuItem("Color");
     private final JMenuItem fillMenuItem = new JMenuItem("Fill");

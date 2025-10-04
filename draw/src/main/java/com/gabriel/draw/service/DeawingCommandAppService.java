@@ -122,4 +122,24 @@ public class DeawingCommandAppService implements AppService {
     public void repaint() {
         appService.repaint();
     }
+
+    @Override
+    public Shape findShapeAt(Point point) {
+        return appService.findShapeAt(point);
+    }
+
+    @Override
+    public void selectShape(Shape shape) {
+        appService.selectShape(shape);
+    }
+
+    @Override
+    public void deselectAllShapes() {
+        appService.deselectAllShapes();
+    }
+
+    @Override
+    public Shape getSelectedShape() {
+        return appService.getSelectedShape();
+    }
 }

@@ -4,4 +4,5 @@ public enum DrawMode {
     Idle,
     MousePressed,
     MouseReleased,
+    Moving,
 }

@@ -14,7 +14,8 @@ import java.awt.*;
 
 public class DrawingAppService implements AppService {
 
-    final private Drawing drawing;;
+    final private Drawing drawing;
+    private Shape selectedShape = null;
     MoverService moverService;
     ScalerService scalerService;
     JPanel drawingView;
@@ -128,5 +129,39 @@ public class DrawingAppService implements AppService {
     @Override
     public void repaint() {
         drawingView.repaint();
+    }
+
+    @Override
+    public Shape findShapeAt(Point point) {
+        // Search from the top (last drawn) to bottom
+        for (int i = drawing.getShapes().size() - 1; i >= 0; i--) {
+            Shape shape = drawing.getShapes().get(i);
+            if (shape.contains(point)) {
+                return shape;
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public void selectShape(Shape shape) {
+        deselectAllShapes();
+        if (shape != null) {
+            shape.setSelected(true);
+            selectedShape = shape;
+        }
+    }
+    
+    @Override
+    public void deselectAllShapes() {
+        for (Shape shape : drawing.getShapes()) {
+            shape.setSelected(false);
+        }
+        selectedShape = null;
+    }
+    
+    @Override
+    public Shape getSelectedShape() {
+        return selectedShape;
     }
 }
