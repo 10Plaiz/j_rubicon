@@ -21,26 +21,39 @@ public class Splash extends JPanel implements MouseListener {
     public Splash() {
         try {
             imageLoader = new ImageLoader();
-            image = imageLoader.loadImage("/nette1440_800.png");
+            image = imageLoader.loadImage("/SplashScreens.png");
 //            image = ImageIO.read(new File("src\\main\\resources\\nette1440_800.png"));
             height = image.getHeight();
             width = image.getWidth();
 
         } catch (IOException ex) {
-            // handle exception...
+            System.err.println("Failed to load splash screen image: " + ex.getMessage());
+            ex.printStackTrace();
+            // Create a default placeholder image
+            width = 1440;
+            height = 800;
+            image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = image.createGraphics();
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.fillRect(0, 0, width, height);
+            g2d.setColor(Color.BLACK);
+            g2d.drawString("Image not found", width/2 - 50, height/2);
+            g2d.dispose();
         }
         setSize(width, height);
         setLayout(null);
 
-        gPanel = new GPanel("GoDraw");
-        gPanel.setBounds(1100,700,150,50);
+        gPanel = new GPanel("goyo");
+        gPanel.setBounds(1050,600,165,84);
         gPanel.addMouseListener(this);
         this.add(gPanel);
     }
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters
+        int x = (getWidth() - image.getWidth()) / 2;
+        int y = (getHeight() - image.getHeight()) / 2;
+        g.drawImage(image, x, y, this);
     }
 
     @Override
