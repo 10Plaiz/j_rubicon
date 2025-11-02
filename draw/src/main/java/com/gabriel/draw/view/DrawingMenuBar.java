@@ -87,10 +87,21 @@ public class DrawingMenuBar extends JMenuBar {
         menuItem.setActionCommand(ActionCommand.ELLIPSE);
         menuItem.addActionListener(actionListener);
 
+        menuItem = new JMenuItem("Picture");
+        menu.add(menuItem);
+        menuItem.setActionCommand(ActionCommand.IMAGE);
+        menuItem.addActionListener(actionListener);
+
+        menuItem = new JMenuItem("Text");
+        menuItem.setActionCommand(ActionCommand.TEXT);
+        menuItem.addActionListener(actionListener);
+        menu.add(menuItem);
+
         menuItem = new JMenuItem("Select");
         menuItem.setActionCommand(ActionCommand.SELECT);
         menuItem.addActionListener(actionListener);
         menu.add(menuItem);
+
 
         add(menu);
 
